@@ -1,0 +1,31 @@
+server:
+  port: 3344
+
+eureka:
+  client:
+    service-url:
+      #设置与eureka server交互的地址查询服务和注册服务都要依赖这个地址
+      defaultZone: http://eureka7001.com:7001/eureka
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/liujingshi-py/springcloud-config.git
+          search-paths: springcloud-config
+      label: main
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
